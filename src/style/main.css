@@ -1,0 +1,93 @@
+.main-header {
+  margin-top: 50px;
+  display: flex;
+}
+.main-header__img {
+  flex: 1;
+  background: url("../img/main.png") no-repeat center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+}
+.main-header-body {
+  margin-left: 20px;
+  flex: 2;
+}
+.main-header__text {
+  font-size: 18px;
+}
+
+.main-cards {
+  margin-top: 100px;
+  display: flex;
+}
+
+.card {
+  flex: 1;
+  text-align: center;
+}
+.card__img {
+  cursor: pointer;
+  height: 250px;
+}
+.card:not(:last-child) {
+  margin-right: 30px;
+}
+.card:nth-child(1) .card__img {
+  background: url("../img/men.jpg") center top no-repeat;
+  background-size: cover;
+}
+.card:nth-child(2) .card__img {
+  background: url("../img/kids.png") center top no-repeat;
+  background-size: cover;
+}
+.card:nth-child(3) .card__img {
+  background: url("../img/woman.png") center top no-repeat;
+  background-size: cover;
+}
+
+.main__button {
+  display: block;
+  margin: 30px auto;
+  border-radius: 8px;
+  padding: 12px 20px;
+  border: none;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .navbar_logo {
+  width: 15vw;
+  height: auto;
+  margin-left: 5vw;
+}
+.navbar .navbar_menu {
+  display: flex;
+  list-style: none;
+  margin-left: 16vw;
+  width: 85vw;
+}
+.navbar .navbar_menu li {
+  padding: 1vw 4vw 1vw 4vw;
+  justify-content: center;
+  align-items: center;
+}
+.navbar .navbar_menu li a {
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+.navbar .navbar_menu li:hover {
+  background-color: lightgray;
+  border-radius: 30px 30px;
+  color: white;
+}
+.navbar .navbar_menu li:hover a {
+  color: white;
+}
