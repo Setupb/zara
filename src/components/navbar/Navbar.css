@@ -1,0 +1,36 @@
+
+.nav-bar * {
+    background: black;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    color: white;
+    font-family: 'Vidaloka', serif;
+    position: relative;
+    z-index: 99;
+    
+}
+.zara-logo{
+    font-size: 30px;
+    margin-left: 10px;
+
+}
+.menu-list{
+    margin-right: 0;
+}
+.nav-bar a{
+    margin-right: 10px;
+    display: flex;
+}
+.nav-bar li a:hover{
+    background-color: rgb(34, 33, 33);
+    transition-timing-function: linear;
+    border-radius: 2px;
+    
+    
+}
+
+.page-heading{
+    display: flex;
+    justify-content: center;
+}
