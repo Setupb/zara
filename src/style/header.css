@@ -7,7 +7,9 @@ header{
     height: 80%;
     display: flex;
     justify-content:space-between;
+    align-items: center;
     font-size: 1.2rem;
+    background-color: black;
 }
 
 .navbar-logo{
@@ -48,7 +50,13 @@ header{
 .nav-links:hover {
     cursor: pointer;
     background-color: rgb(120, 120, 126);
-    border-radius: 4px;
+    border-radius: 16px;
+    transition: all 0.2s ease-out;
+}
+.nav-links.active{
+    cursor: pointer;
+    background-color: rgb(120, 120, 126);
+    border-radius: 16px;
     transition: all 0.2s ease-out;
 }
 
@@ -119,5 +127,25 @@ header{
         color: white;
         font-size: 2rem;
     }
-
+}
+.header-search{
+    position: relative;
+}
+.header-search span{
+    position: absolute;
+    display: block;
+    background: url("../img/search.svg");
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    pointer-events: none;
+    top: 30%;
+    left: 10px;
+}
+.header-search input{
+    padding: 7px 7px 7px 25px;
+    border-radius: 16px;
+}
+.minOpacity{
+    opacity: 0;
 }

@@ -1,0 +1,75 @@
+.div-cd1{
+    display: flex;
+    width: 100%;
+    color: darkslategrey;
+}
+.img-cd{
+    width: auto;
+    height: auto;
+}
+.div-cd2{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.div-cd3{
+    margin-top: 120px;
+}
+.name-cd{
+    font-size: 35px;
+    text-align: center;
+    
+}
+.desc-cd{
+    text-align:left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.price-cd{
+    font-size: 50px;
+    border: 3px solid grey;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.but-cd{
+    display: block;
+    margin: 30px auto;
+    border-radius: 8px;
+    padding: 12px 20px;
+    border: none;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+.but2-cd{
+    font-size: 35px;
+    display: block;
+    margin: 30px auto;
+    border-radius: 8px;
+    padding: 12px 20px;
+    border: none;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.view-but{
+    display: block;
+    margin: 30px auto;
+    border-radius: 8px;
+    padding: 12px 20px;
+    border: none;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+.container-cat{
+    width: auto ;
+    height: auto;
+}
+

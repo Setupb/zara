@@ -1,7 +1,7 @@
 import React from "react";
-import Copyright from "./Copyright";
 
-const Footer= function (){
+
+const Footer = function (){
     return (
         <footer>
             <hr/>
@@ -9,9 +9,8 @@ const Footer= function (){
                 <div className='footer_hight'>
                     <div className='footer_descriptin'>
                         <h4><strong>Zara</strong></h4>
-                        <p>Компанія Zara — це одна з найбільших світових компаній у сфері виробництва модного одягу.
-                            Вона входить до групи Inditex, однієї з найбільших світових дистриб'юторських груп
-                            Inditex.</p>
+                        <p>Zara is one of the world's largest companies in the field of fashion apparel.
+                            It is part of the Inditex group, one of the world's largest distribution groups</p>
                     </div>
                     <div className='logo'>
                         <img className='lincicons'
@@ -33,9 +32,10 @@ const Footer= function (){
                         </a>
                     </div>
                 </div>
-                <Copyright/>
+                <div className='footer_Copyright'>
+                    <p>2020 &copy; IoT Copyright all rights reserved, bla bla</p>
+                </div>
             </div>
-
 
         </footer>
     );

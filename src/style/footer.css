@@ -1,3 +1,6 @@
+footer{
+  margin-top: auto;
+}
 .footer_hight {
   padding: 1em 1em 1em 1em;
   max-width: 100%;
@@ -96,3 +99,5 @@ hr {
   margin: 0;
   padding: 0;
 }
+
+/*# sourceMappingURL=footer.css.map */
