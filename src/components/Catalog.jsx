@@ -1,103 +1,122 @@
-import React, {useState} from "react";
+import React, {useState, useContext, useEffect} from "react";
 // import Products from "./Products";
 import '../style/Catalog/catalog.modules.scss'
 import "../style/Catalog/catalog-cd.css"
 import CatalogItem from "./Catalog/CatalogItem";
 import Filter from "./Catalog/Filter/Filter";
-// import Cart from "./Cart";
+import { Context } from "../Context";
+// import Items from "../Items"
+import "../style/Catalog/catalog-cd.css"
+
 
 
 const CatalogList = props => {
+    
+
+    const{items,setItems}=useContext(Context);
         const {setItem} = props
-    const items = [{
-        id:0,
-        typeProduct: "Women's jackets",
-        foto: 'https://static.zara.net/photos///2021/I/0/1/p/8372/229/400/2/w/195/8372229400_6_1_1.jpg?ts=1629444511812',
-        name: 'Gray jacket',
-        description: 'Quilted jacket with lapels and long sleeves. fastens with buttons on the front. pockets with front trim and a belt of the same',
-        price: `${1899} UAH`
-    },
-    {
-        id:1,
-        typeProduct: "Women's jackets",
-        foto: 'https://static.zara.net/photos///2021/I/0/1/p/8372/729/800/2/w/195/8372729800_6_1_1.jpg?ts=1629444487513',
-        name: 'Black jacket',
-        description: 'Quilted jacket with lapels and long sleeves. fastens with buttons on the front. pockets with front trim and a belt of the same',
-        price: `${1899} UAH`
-    }, {
-        id:2,
-        typeProduct: 'Sleeveless boots',
-        foto: 'https://static.zara.net/photos///2021/I/0/1/p/3046/243/800/2/w/195/3046243800_6_1_1.jpg?ts=1631863751053',
-        name: 'Sleeveless',
-        description: 'Vest with a high collar and hood. laces on the hood and zippered pockets on the front. fastens with metal buttons on the front',
-        price: `${3699} UAH`
-    },
-    {   id:3,
-        typeProduct: "Men's jackets",
-        foto: 'https://static.zara.net/photos///2021/I/0/1/p/3046/036/712/2/w/199/3046036712_6_1_1.jpg?ts=1627976009614',
-        name: 'Leather jacket',
-        description: `We use tracking programs to ensure that our health, safety and quality standards are met.`,
-        price: `${1699}  UAH`
-    },
-    {
-        id:4,
-        typeProduct: "Men's coat",
-        foto: 'https://static.zara.net/photos///2021/I/0/2/p/5838/104/704/2/w/405/5838104704_6_1_1.jpg?ts=1631620417725',
-        name: 'Coat with zipper',
-        description: 'Trench coat made of elastic cotton knit. Collar with flaps and a heel. Long sleeve. Pockets with lapels at hip height.',
-        gender: 'men',
-        price: 2890,
-    },
-    {
-        id:5,
-        typeProduct: "Kid's t-shirt",
-        foto: 'https://static.zara.net/photos///2021/I/0/3/p/2335/304/712/2/w/563/2335304712_6_1_1.jpg?ts=1630401557538',
-        name:'Combined t-shirt-blouse',
-        description: 'Loose-fitting blouse with embroidered flowers, round collar and long sleeves. Elastic band at the edges.',
-        gender: 'kids',
-        price: 499
-    },
-    {
-        id:6,
-        typeProduct: "Kid's sneakers",
-        foto: 'https://static.zara.net/photos///2021/I/1/3/p/8333/830/102/2/w/563/8333830102_6_1_1.jpg?ts=1631213377139',
-        name: 'Solid color sneakers',
-        description: 'Solid color sneakers with inserts. Laces on the instep, a loop for easier putting on at the back and a massive rubber sole.',
-        gender: 'kids',
-        price: 1299
-    },
-    {
-        id:7,
-        typeProduct: "Men's jacket",
-        foto: 'https://static.zara.net/photos///2021/I/0/2/p/5843/579/737/2/w/241/5843579737_6_1_1.jpg?ts=1629191819564',
-        name: 'Double-breasted  jacket',
-        description: 'Elastic double-breasted jacket with sharp lapels and long sleeves. It is fastened with buttons on the front.',
-        gender: 'men',
-        price: 3699
+    
+
+    const [newList, setNewList] = useState(items);
+    const [selectedSort, setSelectedSort] = useState('')
+    const  [listFilters, setListFilters] = useState({
+        gender: null, price: null
+    })
+    const{valueInput,setVżalueInput} = useContext(Context);
+    let count = [...items]
+
+    const filterProduct= newList.filter(product => {
+        if(product.name.toLowerCase().includes(valueInput.toLowerCase())){
+            return product;
+        }if(product.typeProduct.toLowerCase().includes(valueInput.toLowerCase())){
+         return product;
+         }if(product.description.toLowerCase().includes(valueInput.toLowerCase())){
+             return product;
+         }/*if(product.price.toLowerCase().includes(valueInput.toLowerCase())){
+             return product;
+         }*/
+     })
+
+    useEffect(() => {
+        if (selectedSort){
+            setNewList([...newList].sort((a,b) => {
+                if  (typeof a[selectedSort] === 'number')
+                    return a[selectedSort] - b[selectedSort]
+                else return  a[selectedSort].localeCompare(b[selectedSort])
+            }))
+        }
+    },[selectedSort])
+
+    const sortPosts = (sort) => {
+        setSelectedSort(sort)
     }
-]
+
+    const filterGender = (item) => {
+
+        console.log(item)
+        setListFilters(() =>{
+            listFilters.gender = item.value.trim();
+            return listFilters
+        })
+    }
+    const filterPrice = (price) => {
+        setListFilters(() =>{
+            listFilters.price = price;
+            return listFilters
+        })
+    }
+
+    const applyFilters = () => {
+        for (const key in listFilters) {
+            if (key === 'gender' && listFilters[key]) {
+                // console.log('gender')
+                if(listFilters.price)
+                    count = count.filter(item => item.gender === listFilters[key])
+                else setNewList(items.filter(item => item.gender === listFilters[key]));
+            }
+            if(key === 'price' && listFilters[key] ){
+                // console.log('price');
+                setNewList(count.filter(item => {
+                    return item.price > Number(listFilters[key]) && item.price < (Number(listFilters[key]) + 999)
+                }));
+            }
+        }
+    }
+
+    const clearFilters = () => {
+        let select  = document.querySelector('.filters-panel-selects')
+        select.childNodes.forEach(item =>{
+            if(item.tagName === 'select'.toUpperCase()){
+                item.value = ''
+            }
+        })
+        setNewList(items);
+    }
+    if(items.length===0){
+        return (<div id="loader" class="loader">Loading...</div>)
+    }
     return (
         <main>
-            <div className='container-cat'>
-                <Filter/>
+            <div className='container'>
+                <Filter
+                    onChange = {sortPosts}
+                    filterGender = {filterGender}
+                    filterPrice = {filterPrice}
+                    applyFilters = {applyFilters}
+                    clearFilters = {clearFilters}
+                />
+               
+                
                 <div className='products'>
-                    {items.map(item => <CatalogItem product={item} key={item.id} setItem={setItem} />)}
+                    {filterProduct.length ?
+                        filterProduct.map(item => <CatalogItem product={item} key={item.id} setItem={setItem} />)
+                        : <h1>No products were found using these filters</h1>
+                    }
                 </div>
             </div>
         </main>
     )
 }
-
-
-const Cart = (props)=>{
-    const {item,setItem}=props
-    console.log(item)
-    return (
-        <div>asdasd</div>
-    )
-    
-}
-
 
 const CatalogDitale = (props)=>{
     const {item,setItem}=props
@@ -113,21 +132,18 @@ const CatalogDitale = (props)=>{
             <h2 className="name-cd"> {item.name}</h2>
             <h2 className="desc-cd"> {item.description}</h2>
             <h2 className="price-cd"> {item.price}</h2> 
-            <button className="but2-cd" onClick={()=>{<Cart key={item.id} setItem={setItem} item={item}/>}}>BUY</button> 
+            <button className="but2-cd" >BUY NOW</button> 
         </div>
         </div>
-        
         </>
     )
 }
 
-
-
-const Catalog=()=>{
+const Catalog =()=>{
     const [item,setItem]=useState(undefined)
     if(!item){      
         return <CatalogList setItem={setItem}/>
-    }else{    
+    }else{
         return <CatalogDitale item={item} setItem={setItem}/>
     }
 }
